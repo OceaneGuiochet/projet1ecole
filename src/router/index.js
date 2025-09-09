@@ -6,6 +6,7 @@ import DefaultLayout from '../layouts/DefaultLayout.vue'
 // Pages
 import Home from '../pages/HomePage.vue'
 import Contact from '../pages/ContactPage.vue'
+import List from '../pages/ShoppingListPage.vue'
 
 const routes = [
   {
@@ -21,6 +22,11 @@ const routes = [
         path: '/contact',
         name: 'Contact',
         component: Contact
+      },
+      {
+        path: '/list',
+        name: 'List',
+        component: List
       }
     ]
   }

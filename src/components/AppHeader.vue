@@ -1,7 +1,7 @@
 <template>
   <header>
     <div>
-      <h1>Photographer</h1>
+      <h1>Liste de course</h1>
 
       <nav>
         <ul>
