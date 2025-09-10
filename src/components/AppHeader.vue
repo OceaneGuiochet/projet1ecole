@@ -1,7 +1,9 @@
 <script setup>
 import { useShoppingListStore } from "@/stores/shoppingList";
+import { useUserStore } from "@/stores/authStore";
 
 const shoppingList = useShoppingListStore();
+const userStore = useUserStore();
 </script>
 
 <template>
@@ -42,13 +44,21 @@ const shoppingList = useShoppingListStore();
               Contact
             </router-link>
           </li>
-          <li>
+          <li v-if="!userStore.user">
             <router-link
               to="/auth"
               class="text-gray-50 hover:text-gray-300 transition-colors"
             >
               Connexion
             </router-link>
+          </li>
+          <li v-if="userStore.user" class="flex items-center">
+            <button
+              @click="userStore.logout"
+              class="text-gray-50 hover:text-gray-300 transition-colors"
+            >
+              Déconnexion
+            </button>
           </li>
         </ul>
       </nav>
