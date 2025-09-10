@@ -1,9 +1,9 @@
 <script setup>
-import ContextForm from "../components/ContactForm.vue";
+import AuthForm from "@/components/AuthForm.vue";
 </script>
 
 <template>
   <div class="mt-12">
-    <ContextForm />
+    <AuthForm />
   </div>
 </template>

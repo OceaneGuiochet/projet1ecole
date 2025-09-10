@@ -7,6 +7,7 @@ import DefaultLayout from '../layouts/DefaultLayout.vue'
 import Home from '../pages/HomePage.vue'
 import Contact from '../pages/ContactPage.vue'
 import List from '../pages/ShoppingListPage.vue'
+import Auth from '../pages/AuthPage.vue'
 
 const routes = [
   {
@@ -27,6 +28,11 @@ const routes = [
         path: '/list',
         name: 'List',
         component: List
+      },
+      {
+        path: '/auth',
+        name: 'Auth',
+        component: Auth
       }
     ]
   }

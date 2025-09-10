@@ -4,7 +4,7 @@ import ShoppingItem from "@/components/ShoppingItem.vue"
 
 const products = ref([])
 const page = ref(1) 
-const pageSize = 40
+const pageSize = 100 
 
 async function fetchProducts() {
   try {
@@ -36,11 +36,12 @@ onMounted(fetchProducts)
 </script>
 
 <template>
-  <div >
-    <h1 >Produits</h1>
+  <div class="max-w-7xl mx-auto p-6">
+    <h1 class="text-3xl font-bold text-emerald-800 mb-8 text-center">
+      Produits
+    </h1>
 
-  
-    <ul >
+    <ul class="grid grid-cols-5 gap-6">
       <ShoppingItem
         v-for="product in products"
         :key="product.code"
@@ -48,20 +49,22 @@ onMounted(fetchProducts)
       />
     </ul>
 
-    <div >
+    <div class="flex items-center justify-center gap-4 mt-8">
       <button
         @click="prevPage"
         :disabled="page === 1"
-        
+        class="px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition"
       >
-        Précédent
+         Précédent
       </button>
-      <span>Page {{ page }}</span>
+
+      <span class="text-emerald-800 font-semibold">Page {{ page }}</span>
+
       <button
         @click="nextPage"
-       
+        class="px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition"
       >
-        Suivant
+        Suivant 
       </button>
     </div>
   </div>
