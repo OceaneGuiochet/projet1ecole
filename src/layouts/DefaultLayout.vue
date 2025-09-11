@@ -1,5 +1,6 @@
 <script setup>
 import Header from '../components/AppHeader.vue'
+import Footer from '../components/AppFooter.vue'
 </script>
 
 <template>
@@ -9,5 +10,6 @@ import Header from '../components/AppHeader.vue'
     <main class="flex-1">
       <router-view />
     </main>
+    <Footer/>
   </div>
 </template>
