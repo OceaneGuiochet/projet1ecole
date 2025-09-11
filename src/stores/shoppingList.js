@@ -61,25 +61,36 @@ export const useShoppingListStore = defineStore("shoppingList", {
 
     async removeItem(code) {
       const userStore = useUserStore();
-      if (!userStore.user) return;
       const current = this.items.find((p) => p.code === code);
       if (!current) return;
-      const ref = doc(db, "shoppingLists", userStore.user.uid, "items", code);
-      if (current.quantity > 1) {
-        await setDoc(ref, { ...current, quantity: current.quantity - 1 });
+      if (userStore.user) {
+        const ref = doc(db, "shoppingLists", userStore.user.uid, "items", code);
+        if (current.quantity > 1) {
+          await setDoc(ref, { ...current, quantity: current.quantity - 1 });
+        } else {
+          await deleteDoc(ref);
+        }
       } else {
-        await deleteDoc(ref);
+        if (current.quantity > 1) {
+          current.quantity -= 1;
+        } else {
+          this.items = this.items.filter((p) => p.code !== code);
+        }
+        localStorage.setItem("shoppingList", JSON.stringify(this.items));
       }
     },
 
     async clearList() {
       const userStore = useUserStore();
-      if (!userStore.user) return;
-      for (const it of this.items) {
-        await deleteDoc(
-          doc(db, "shoppingLists", userStore.user.uid, "items", it.code)
-        );
+      if (userStore.user) {
+        for (const it of this.items) {
+          await deleteDoc(
+            doc(db, "shoppingLists", userStore.user.uid, "items", it.code)
+          );
+        }
       }
+      this.items = [];
+      localStorage.removeItem("shoppingList");
     },
   },
 });
